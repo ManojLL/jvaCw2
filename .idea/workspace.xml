@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Z7ZUWncOKpF0RnO3EITZKiP9mq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/jar_files/mongo-java-driver-3.12.2.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager" selected="Application.Train">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="test10" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Train" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Train" />
+      <module name="test10" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Train" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="" />
+      <created>1584192108263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584192108263</updated>
+      <workItem from="1584192119262" duration="56455000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="491" y="110" width="374" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1584204535525">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="491" y="110" width="374" height="582" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1584204535525" />
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl" timestamp="1584298256322">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1584298256322" />
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1584310501474">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1584310501474" />
+    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1584310501470">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1584310501470" />
+    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1584310501469">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1584310501469" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1584310501471">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1584310501471" />
+    <state x="166" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1584298276337">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="166" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1584298276337" />
+    <state x="336" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1584309761064">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="336" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1366.741@0.27.1366.741" timestamp="1584309761064" />
+    <state x="347" y="174" key="run.anything.popup" timestamp="1584280466807">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1584280466807" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1584266845066">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1584266845066" />
+  </component>
+</project>

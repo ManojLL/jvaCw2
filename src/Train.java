@@ -1,5 +1,5 @@
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.application.Application;
@@ -15,6 +15,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.bson.Document;
 
+import java.io.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class Train extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         //[2] means to badull & to colombo two destinations
         //[30] means customer can book seat for 30 days
         //[42] rows number of seats
@@ -40,16 +42,17 @@ public class Train extends Application {
         String[] destination = {"To Badulla", "To Colombo"};
 
         //database connectivity
-        MongoClient mongo = new MongoClient("localhost", 27017);
-        MongoDatabase database = mongo.getDatabase("dumbaraManikeTrain");
-        MongoCollection<Document> toBadulla = database.getCollection("badulla");
-        MongoCollection<Document> toColombo = database.getCollection("Colombo");
-        Document document = new Document();
+//        MongoClient mongo = new MongoClient("localhost", 27017);
+//        MongoDatabase database = mongo.getDatabase("dumbaraManikeTrain");
+//        MongoCollection<Document> toBadulla = database.getCollection("badulla");
+//        MongoCollection<Document> toColombo = database.getCollection("Colombo");
+//        Document document = new Document();
 
 
         LocalDate minDate = LocalDate.now().plusDays(1);    //book start date
         LocalDate maxDate = LocalDate.now().plusDays(30);   //book end date
         LocalDate nowDate = LocalDate.now();
+        System.out.println(nowDate);
         Scanner sc = new Scanner(System.in);
         menu:
         while (true) {
@@ -88,10 +91,12 @@ public class Train extends Application {
                     findCustomer(sc, minDate, maxDate, destination, nowDate, booking);
                     break;
                 case "s":
-                    storeData(booking, nowDate, toBadulla, toColombo, document);
+                    // storeData(booking, nowDate, toBadulla, toColombo, document);
+                    saveData(booking, nowDate);
                     break;
                 case "l":
-                    loadData(booking, nowDate, toBadulla, toColombo, document);
+                    loadData(booking,nowDate);
+                    //loadData(booking, nowDate, toBadulla, toColombo, document);
                     break;
                 case "o":
                     sorting(minDate, maxDate, destination, nowDate, booking);
@@ -759,70 +764,122 @@ public class Train extends Application {
         }
     }
 
-    private void storeData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
-        try {
-            for (int i = 0; i < 2; i++) {
-                if (i == 0) {
-                    sendData(document, toBadulla, booking, i, now);
-                } else {
-                    sendData(document, toColombo, booking, i, now);
+//    private void storeData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
+//        try {
+//            for (int i = 0; i < 2; i++) {
+//                if (i == 0) {
+//                    sendData(document, toBadulla, booking, i, now);
+//                } else {
+//                    sendData(document, toColombo, booking, i, now);
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+//        }
+//    }
+//
+//    private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
+//        try {
+//            for (int x = 0; x < 30; x++) {
+//                for (int y = 0; y < SEAT_CAPACITI; y++) {
+//                   LocalDate bDate = now.plusDays(x+1);
+//                    document.append("seat", booking[i][x][y][0]);
+//                    document.append("name", booking[i][x][y][1]);
+//                    document.append("id", booking[i][x][y][2]);
+//                    document.append("contact", booking[i][x][y][3]);
+//                    document.append("address", booking[i][x][y][4]);
+//                    document.append("email", booking[i][x][y][5]);
+//                    document.append("date", bDate);
+//                    collection.insertOne(document);
+//                    document.clear();
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+//        }
+//    }
+//
+//    private void loadData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
+//
+//        getData(toBadulla, now, 0, booking);
+//
+//       // System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+//
+//    }
+//
+//    private void getData(MongoCollection<Document> collection, LocalDate now, int x, String[][][][] booking) {
+//        FindIterable<Document> data = collection.find();
+//        for(Document record : data){
+//            String seat = (String) record.get("seat");
+//            String name = (String) record.get("name");
+//            String id = (String) record.get("id");
+//            String address = (String) record.get("address");
+//            String contact = (String) record.get("contact");
+//            String email = (String) record.get("email");
+//            Date bDae = (Date) record.getDate("date");
+//            System.out.println(bDae);
+//        }
+//    }
+
+    private void saveData(String[][][][] booking, LocalDate now) throws IOException {
+        File file1 = new File("badulla.txt");
+        File file2 = new File("colombo.txt");
+        save(booking, now, file1, 0);
+        save(booking, now, file2, 1);
+    }
+
+    private void save(String[][][][] booking, LocalDate now, File file, int x) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < SEAT_CAPACITI; j++) {
+                if (booking[x][i][j][0] != null) {
+                    bw.write(booking[x][i][j][0] + "/" + booking[x][i][j][1] + "/" + booking[x][i][j][2] + "/" + booking[x][i][j][3]
+                            + "/" + booking[x][i][j][4] + "/" + booking[x][i][j][5] + "/" + now.plusDays(i + 1));
                 }
             }
-        } catch (Exception e) {
-            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+        }
+        bw.close();
+    }
+
+    private void loadData(String[][][][] booking, LocalDate now) {
+        File file1 = new File("badulla.txt");
+        File file2 = new File("colombo.txt");
+        getData(booking, now, file1, 0);
+        getData(booking, now, file2, 1);
+    }
+
+    private void getData(String[][][][] booking, LocalDate now, File file, int x) {
+        try {
+            BufferedReader bw = new BufferedReader(new FileReader(file));
+            String st;
+            while ((st = bw.readLine()) != null) {
+                setData(st, booking, x, now);
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("cant find file!!");
         }
     }
 
-    private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
-        try {
-            for (int x = 0; x < 30; x++) {
-                for (int y = 0; y < SEAT_CAPACITI; y++) {
-                    document.append("seat", booking[i][x][y][0]);
-                    document.append("name", booking[i][x][y][1]);
-                    document.append("id", booking[i][x][y][2]);
-                    document.append("contact", booking[i][x][y][3]);
-                    document.append("address", booking[i][x][y][4]);
-                    document.append("email", booking[i][x][y][5]);
-                    document.append("date", now.plusDays(i));
-                    collection.insertOne(document);
-                    document.clear();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+    private void setData(String line, String[][][][] booking, int x, LocalDate now) {
+        String[] details = line.split("/");
+        String bDate = details[6];
+        String sNumbre = details[0];
+        String name = details[1];
+        String id = details[2];
+        String address = details[3];
+        String contact = details[4];
+        String email = details[5];
+        int diff = Period.between(now, LocalDate.parse(bDate)).getDays();
+        System.out.println(diff);
+        if (diff > 0) {
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][0] = sNumbre;
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][1] = name;
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][2] = id;
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][3] = address;
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][4] = contact;
+            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][5] = email;
         }
-    }
-
-    private void loadData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
-
-        getData(toBadulla, now, 0, booking);
-
-        System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
-
-    }
-
-    private void getData(MongoCollection<Document> collection, LocalDate now, int x, String[][][][] booking) {
-        collection.find().forEach(new Block<Document>() {
-            @Override
-            public void apply(Document document) {
-                int seatNumber = (int) document.get("seat");
-                LocalDate bookedDate = (LocalDate) document.get("date");
-                int diff = Period.between(now, bookedDate).getDays();
-                String name = (String) document.get("name");
-                String id = (String) document.get("id");
-                String contact = (String) document.get("contact");
-                String address = (String) document.get("address");
-                String email = (String) document.get("email");
-
-                booking[x][diff - 1][seatNumber - 1][0] = String.valueOf(seatNumber);
-                booking[x][diff - 1][seatNumber - 1][1] = name;
-                booking[x][diff - 1][seatNumber - 1][2] = id;
-                booking[x][diff - 1][seatNumber - 1][3] = address;
-                booking[x][diff - 1][seatNumber - 1][4] = contact;
-                booking[x][diff - 1][seatNumber - 1][5] = email;
-
-            }
-        });
     }
 }
 

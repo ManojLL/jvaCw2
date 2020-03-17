@@ -14,9 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.bson.Document;
-
 import java.io.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -41,12 +39,12 @@ public class Train extends Application {
         //destinations
         String[] destination = {"To Badulla", "To Colombo"};
 
-        //database connectivity
-//        MongoClient mongo = new MongoClient("localhost", 27017);
-//        MongoDatabase database = mongo.getDatabase("dumbaraManikeTrain");
-//        MongoCollection<Document> toBadulla = database.getCollection("badulla");
-//        MongoCollection<Document> toColombo = database.getCollection("Colombo");
-//        Document document = new Document();
+        // database connectivity
+        MongoClient mongo = new MongoClient("localhost", 27017);
+        MongoDatabase database = mongo.getDatabase("dumbaraManikeTrain");
+        MongoCollection<Document> toBadulla = database.getCollection("badulla");
+        MongoCollection<Document> toColombo = database.getCollection("Colombo");
+        Document document = new Document();
 
 
         LocalDate minDate = LocalDate.now().plusDays(1);    //book start date
@@ -91,12 +89,10 @@ public class Train extends Application {
                     findCustomer(sc, minDate, maxDate, destination, nowDate, booking);
                     break;
                 case "s":
-                    // storeData(booking, nowDate, toBadulla, toColombo, document);
-                    saveData(booking, nowDate);
+                    storeData(booking, nowDate, toBadulla, toColombo, document);
                     break;
                 case "l":
-                    loadData(booking,nowDate);
-                    //loadData(booking, nowDate, toBadulla, toColombo, document);
+                    loadData(booking, nowDate, toBadulla, toColombo, document);
                     break;
                 case "o":
                     sorting(minDate, maxDate, destination, nowDate, booking);
@@ -112,6 +108,10 @@ public class Train extends Application {
     private void addCustomer(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking) {
         Stage stage = new Stage();
         Pane pane = new Pane();
+        Label label2 = new Label("select date and destination");
+        Label label = new Label("you can book seat between"+now.plusDays(1)+" and "+now.plusDays(30)+" dates");
+        label.setStyle("-fx-font-size: 16px");
+        label2.setStyle("-fx-font-size: 16px");
         Label labelDate = new Label("Select Date : ");
         Label labelDest = new Label("Select destination : ");
         DatePicker datePicker = new DatePicker();
@@ -123,13 +123,13 @@ public class Train extends Application {
         });
         final LocalDate[] selectDate = new LocalDate[1];
         final int[] diff = new int[1];
-        EventHandler<ActionEvent> eventDate = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                selectDate[0] = datePicker.getValue();
-                diff[0] = Period.between(now, selectDate[0]).getDays();
-            }
+        EventHandler<ActionEvent> eventDate = event -> {
+            selectDate[0] = datePicker.getValue();
+            diff[0] = Period.between(now, selectDate[0]).getDays();
         };
+        label.setLayoutX(40);label.setLayoutY(100);
+        label2.setLayoutX(75);label2.setLayoutY(150);
+
         datePicker.setLayoutX(225);
         datePicker.setLayoutY(250);
         labelDate.setLayoutX(50);
@@ -164,7 +164,7 @@ public class Train extends Application {
         });
         combo_box.setOnAction(event);
         datePicker.setOnAction(eventDate);
-        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton);
+        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton,label,label2);
         Scene scene = new Scene(pane, 600, 600);
 
         bookButton.setOnAction(e -> {
@@ -270,6 +270,7 @@ public class Train extends Application {
 
                 } else {
                     addToArray(sNum, uName, id, uCn, uEmail, uAddress, book, x, diff, stage, scene);
+
                 }
             }
 
@@ -282,6 +283,7 @@ public class Train extends Application {
     //send data to array
     private void addToArray(String seatNum, String name, String id, String contact, String email, String address, String[][][][] book, int x, int diff, Stage stage, Scene scene) {
         showAlert(name, seatNum);
+        // 0 = seat number , 1= name , 2 = nic , 3 = address, 4 = contact , 5 = email
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][0] = seatNum;
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][1] = name;
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][2] = id;
@@ -302,6 +304,10 @@ public class Train extends Application {
     private void viewAll(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking) {
         Stage stage = new Stage();
         Pane pane = new Pane();
+        Label label2 = new Label("select date and destination");
+        Label label = new Label("you can view all seats between"+now.plusDays(1)+" and "+now.plusDays(30)+" dates");
+        label.setStyle("-fx-font-size: 16px");
+        label2.setStyle("-fx-font-size: 16px");
         Label labelDate = new Label("Select Date : ");
         Label labelDest = new Label("Select destination : ");
         DatePicker datePicker = new DatePicker();
@@ -320,10 +326,10 @@ public class Train extends Application {
                 diff[0] = Period.between(now, selectDate[0]).getDays();
             }
         };
-        datePicker.setLayoutX(225);
-        datePicker.setLayoutY(250);
-        labelDate.setLayoutX(50);
-        labelDate.setLayoutY(250);
+        label.setLayoutX(40);label.setLayoutY(100);
+        label2.setLayoutX(75);label2.setLayoutY(150);
+        datePicker.setLayoutX(225);datePicker.setLayoutY(250);
+        labelDate.setLayoutX(50);labelDate.setLayoutY(250);
 
         ComboBox<String> combo_box = new ComboBox<>(FXCollections.observableArrayList(destination));
         final int[] x = new int[1];
@@ -356,7 +362,7 @@ public class Train extends Application {
 
         combo_box.setOnAction(event);
         datePicker.setOnAction(eventDate);
-        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton);
+        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton,label,label2);
         Scene scene = new Scene(pane, 600, 600);
 
         bookButton.setOnAction(e -> {
@@ -437,6 +443,10 @@ public class Train extends Application {
     private void viewEmpty(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking) {
         Stage stage = new Stage();
         Pane pane = new Pane();
+        Label label2 = new Label("select date and destination");
+        Label label = new Label("you can view empty seats between"+now.plusDays(1)+" and "+now.plusDays(30)+" dates");
+        label.setStyle("-fx-font-size: 16px");
+        label2.setStyle("-fx-font-size: 16px");
         Label labelDate = new Label("Select Date : ");
         Label labelDest = new Label("Select destination : ");
         DatePicker datePicker = new DatePicker();
@@ -455,8 +465,9 @@ public class Train extends Application {
                 diff[0] = Period.between(now, selectDate[0]).getDays();
             }
         };
-        datePicker.setLayoutX(225);
-        datePicker.setLayoutY(250);
+        label.setLayoutX(40);label.setLayoutY(100);
+        label2.setLayoutX(75);label2.setLayoutY(150);
+        datePicker.setLayoutX(225);datePicker.setLayoutY(250);
         labelDate.setLayoutX(50);
         labelDate.setLayoutY(250);
 
@@ -491,7 +502,7 @@ public class Train extends Application {
 
         combo_box.setOnAction(event);
         datePicker.setOnAction(eventDate);
-        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton);
+        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton,label,label2);
         Scene scene = new Scene(pane, 600, 600);
 
         bookButton.setOnAction(e -> {
@@ -504,7 +515,7 @@ public class Train extends Application {
             }
         });
         stage.setScene(scene);
-        stage.setTitle("View seats");
+        stage.setTitle("View empty seats");
         stage.showAndWait();
     }
 
@@ -527,9 +538,7 @@ public class Train extends Application {
         close.setLayoutY(200);
         back.setLayoutX(400);
         back.setLayoutY(200);
-        close.setOnAction(e -> {
-            stage.close();
-        });
+        close.setOnAction(e -> stage.close());
         back.setOnAction(e -> {
             stage.setScene(scene);
         });
@@ -562,6 +571,8 @@ public class Train extends Application {
     private void guiPart(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking, LocalDate[] selectDate, int[] diff, int[] x, String[] y, boolean[] run) {
         Stage stage = new Stage();
         Pane pane = new Pane();
+        Label label2 = new Label("select date and destination");
+        label2.setStyle("-fx-font-size: 16px");
         Label labelDate = new Label("Select Date : ");
         Label labelDest = new Label("Select destination : ");
         DatePicker datePicker = new DatePicker();
@@ -580,6 +591,7 @@ public class Train extends Application {
                 diff[0] = Period.between(now, selectDate[0]).getDays();
             }
         };
+        label2.setLayoutX(75);label2.setLayoutY(150);
         datePicker.setLayoutX(225);
         datePicker.setLayoutY(250);
         labelDate.setLayoutX(50);
@@ -616,7 +628,7 @@ public class Train extends Application {
         });
         combo_box.setOnAction(event);
         datePicker.setOnAction(eventDate);
-        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton);
+        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton,label2);
         Scene scene = new Scene(pane, 600, 600);
 
         bookButton.setOnAction(e -> {
@@ -630,7 +642,6 @@ public class Train extends Application {
             }
         });
         stage.setScene(scene);
-        stage.setTitle("View seats");
         stage.showAndWait();
     }
 
@@ -712,7 +723,7 @@ public class Train extends Application {
                 System.out.print("Enter your option : ");
                 String option = sc.next().toLowerCase();
                 if ("q".equals(option)) {
-                    break finding;
+                    break;
                 }
             }
         }
@@ -764,121 +775,80 @@ public class Train extends Application {
         }
     }
 
-//    private void storeData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
-//        try {
-//            for (int i = 0; i < 2; i++) {
-//                if (i == 0) {
-//                    sendData(document, toBadulla, booking, i, now);
-//                } else {
-//                    sendData(document, toColombo, booking, i, now);
-//                }
-//            }
-//        } catch (Exception e) {
-//            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
-//        }
-//    }
-//
-//    private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
-//        try {
-//            for (int x = 0; x < 30; x++) {
-//                for (int y = 0; y < SEAT_CAPACITI; y++) {
-//                   LocalDate bDate = now.plusDays(x+1);
-//                    document.append("seat", booking[i][x][y][0]);
-//                    document.append("name", booking[i][x][y][1]);
-//                    document.append("id", booking[i][x][y][2]);
-//                    document.append("contact", booking[i][x][y][3]);
-//                    document.append("address", booking[i][x][y][4]);
-//                    document.append("email", booking[i][x][y][5]);
-//                    document.append("date", bDate);
-//                    collection.insertOne(document);
-//                    document.clear();
-//                }
-//            }
-//        } catch (Exception e) {
-//            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
-//        }
-//    }
-//
-//    private void loadData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
-//
-//        getData(toBadulla, now, 0, booking);
-//
-//       // System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
-//
-//    }
-//
-//    private void getData(MongoCollection<Document> collection, LocalDate now, int x, String[][][][] booking) {
-//        FindIterable<Document> data = collection.find();
-//        for(Document record : data){
-//            String seat = (String) record.get("seat");
-//            String name = (String) record.get("name");
-//            String id = (String) record.get("id");
-//            String address = (String) record.get("address");
-//            String contact = (String) record.get("contact");
-//            String email = (String) record.get("email");
-//            Date bDae = (Date) record.getDate("date");
-//            System.out.println(bDae);
-//        }
-//    }
-
-    private void saveData(String[][][][] booking, LocalDate now) throws IOException {
-        File file1 = new File("badulla.txt");
-        File file2 = new File("colombo.txt");
-        save(booking, now, file1, 0);
-        save(booking, now, file2, 1);
-    }
-
-    private void save(String[][][][] booking, LocalDate now, File file, int x) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < SEAT_CAPACITI; j++) {
-                if (booking[x][i][j][0] != null) {
-                    bw.write(booking[x][i][j][0] + "/" + booking[x][i][j][1] + "/" + booking[x][i][j][2] + "/" + booking[x][i][j][3]
-                            + "/" + booking[x][i][j][4] + "/" + booking[x][i][j][5] + "/" + now.plusDays(i + 1));
+    private void storeData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
+        try {
+            System.out.println("\n--------------- sending data to database ----------------\n");
+            for (int i = 0; i < 2; i++) {
+                if (i == 0) {
+                    sendData(document, toBadulla, booking, i, now);
+                } else {
+                    sendData(document, toColombo, booking, i, now);
                 }
             }
+            System.out.println("\n--------------- sending finish ----------------\n");
+        } catch (Exception e) {
+            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
         }
-        bw.close();
     }
 
-    private void loadData(String[][][][] booking, LocalDate now) {
-        File file1 = new File("badulla.txt");
-        File file2 = new File("colombo.txt");
-        getData(booking, now, file1, 0);
-        getData(booking, now, file2, 1);
-    }
-
-    private void getData(String[][][][] booking, LocalDate now, File file, int x) {
+    private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
         try {
-            BufferedReader bw = new BufferedReader(new FileReader(file));
-            String st;
-            while ((st = bw.readLine()) != null) {
-                setData(st, booking, x, now);
+            for (int x = 0; x < 30; x++) {
+                for (int y = 0; y < SEAT_CAPACITI; y++) {
+                    if (booking[i][x][y][0] != null) {
+                        LocalDate bDate = now.plusDays(x + 1);
+                        String bookDate = bDate.toString();
+                        document.append("seat", booking[i][x][y][0]);
+                        document.append("name", booking[i][x][y][1]);
+                        document.append("id", booking[i][x][y][2]);
+                        document.append("contact", booking[i][x][y][4]);
+                        document.append("address", booking[i][x][y][3]);
+                        document.append("email", booking[i][x][y][5]);
+                        document.append("date", bookDate);
+                        collection.insertOne(document);
+                        document.clear();
+                    }
+                }
             }
-            bw.close();
-        } catch (IOException e) {
-            System.out.println("cant find file!!");
+        } catch (Exception e) {
+            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
         }
     }
 
-    private void setData(String line, String[][][][] booking, int x, LocalDate now) {
-        String[] details = line.split("/");
-        String bDate = details[6];
-        String sNumbre = details[0];
-        String name = details[1];
-        String id = details[2];
-        String address = details[3];
-        String contact = details[4];
-        String email = details[5];
-        int diff = Period.between(now, LocalDate.parse(bDate)).getDays();
-        System.out.println(diff);
-        if (diff > 0) {
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][0] = sNumbre;
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][1] = name;
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][2] = id;
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][3] = address;
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][4] = contact;
-            booking[x][diff - 1][Integer.parseInt(sNumbre) - 1][5] = email;
+    private void loadData(String[][][][] booking, LocalDate now, MongoCollection<Document> toBadulla, MongoCollection<Document> toColombo, Document document) {
+        try {
+            System.out.println("\n--------------- loading data ----------------\n");
+            getData(toBadulla, now, 0, booking);
+            getData(toColombo, now, 1, booking);
+            System.out.println("\n--------------- data loaded ----------------\n");
+        } catch (Exception e) {
+            System.out.println("some thing wet wrong!!!\n ********PLEASE CALL TO THE DEVELOPER*****");
+        }
+    }
+
+    private void getData(MongoCollection<Document> collection, LocalDate now, int x, String[][][][] booking) {
+        try {
+            FindIterable<Document> data = collection.find();
+            for (Document record : data) {
+                System.out.println(record);
+                String seat = (String) record.get("seat");
+                String name = (String) record.get("name");
+                String id = (String) record.get("id");
+                String address = (String) record.get("address");
+                String contact = (String) record.get("contact");
+                String email = (String) record.get("email");
+                int diff = Period.between(now, LocalDate.parse((String) record.get("date"))).getDays();
+                if (diff > 0) {
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][0] = seat;
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][1] = name;
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][2] = id;
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][3] = address;
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][4] = contact;
+                    booking[x][diff - 1][Integer.parseInt(seat) - 1][5] = email;
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Some thing went wrong\n Call to the developer!!!");
         }
     }
 }

@@ -306,8 +306,8 @@ public class Train extends Application {
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][1] = name;
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][2] = surname;
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][3] = id;
-        book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][4] = address;
-        book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][5] = contact;
+        book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][5] = address;
+        book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][4] = contact;
         book[x - 1][diff - 1][Integer.parseInt(seatNum) - 1][6] = email;
         stage.setScene(scene);
     }
@@ -826,6 +826,7 @@ public class Train extends Application {
     private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
         try {
             for (int x = 0; x < 30; x++) {
+                loop:
                 for (int y = 0; y < SEAT_CAPACITI; y++) {
                     if (booking[i][x][y][0] != null) {
                         LocalDate bDate = now.plusDays(x + 1);
@@ -838,6 +839,16 @@ public class Train extends Application {
                         document.append("address", booking[i][x][y][5]);
                         document.append("email", booking[i][x][y][6]);
                         document.append("date", bookDate);
+
+                        //check data already in the collection, if true miss that
+                        FindIterable<Document> data = collection.find();
+                        for (Document record : data) {
+                            String seat = (String) record.get("seat");
+                            if(seat.equals(booking[i][x][y][0])){
+                                document.clear();
+                                continue loop;
+                            }
+                        }
                         collection.insertOne(document);
                         document.clear();
                     }

@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/badulla.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/colombo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/META-INF/test10.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/test10/Train.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test10.iml" beforeDir="false" afterPath="$PROJECT_DIR$/w1761261.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +97,9 @@
       <workItem from="1585233049653" duration="383000" />
       <workItem from="1585822799613" duration="2584000" />
       <workItem from="1585896629996" duration="4746000" />
-      <workItem from="1585943549592" duration="1290000" />
+      <workItem from="1585943549592" duration="2858000" />
+      <workItem from="1585976854679" duration="10288000" />
+      <workItem from="1586075067028" duration="3257000" />
     </task>
     <servers />
   </component>
@@ -121,6 +107,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="278" y="59" width="800" height="684" key="#Inspections" timestamp="1586007759903">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="278" y="59" width="800" height="684" key="#Inspections/0.27.1366.741@0.27.1366.741" timestamp="1586007759903" />
     <state x="491" y="110" width="374" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1584204535525">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -133,22 +123,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1584592239236" />
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1585944912080">
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1586023660084">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1585944912080" />
-    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1585944912078">
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1586023660084" />
+    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1586023660083">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1585944912078" />
-    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1585944912074">
+    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1586023660083" />
+    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1586023660082">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1585944912074" />
-    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1585944912079">
+    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1586023660082" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1586023660084">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1585944912079" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1586023660084" />
     <state x="166" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1584298276337">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

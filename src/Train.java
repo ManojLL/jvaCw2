@@ -738,6 +738,7 @@ public class Train extends Application {
                 System.out.print("Enter customer name : ");
                 sc.nextLine();
                 String name = sc.nextLine();
+                System.out.println(name);
                 boolean find = false;
                 for (int x = 0; x < SEAT_CAPACITI; x++) {
                     if (name.equalsIgnoreCase(booking[choseDeasta[0] - 1][difference[0] - 1][x][1] + " " + booking[choseDeasta[0] - 1][difference[0] - 1][x][2])) {
@@ -844,12 +845,14 @@ public class Train extends Application {
                         FindIterable<Document> data = collection.find();
                         for (Document record : data) {
                             String seat = (String) record.get("seat");
-                            if(seat.equals(booking[i][x][y][0])){
+                            if(seat.equals(booking[i][x][y][0]) && LocalDate.parse((String) record.get("date")).equals(bDate)){
                                 document.clear();
                                 continue loop;
                             }
                         }
                         collection.insertOne(document);
+                        System.out.println(document);
+                        System.out.println("added");
                         document.clear();
                     }
                 }

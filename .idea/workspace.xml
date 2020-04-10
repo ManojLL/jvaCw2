@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Train.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +37,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -101,12 +98,15 @@
       <workItem from="1585976854679" duration="10288000" />
       <workItem from="1586075067028" duration="5868000" />
       <workItem from="1586154376179" duration="7677000" />
-      <workItem from="1586231365729" duration="15710000" />
+      <workItem from="1586231365729" duration="16703000" />
+      <workItem from="1586416374951" duration="5720000" />
+      <workItem from="1586466073257" duration="723000" />
+      <workItem from="1586497988846" duration="669000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="278" y="59" width="800" height="684" key="#Inspections" timestamp="1586007759903">
@@ -125,22 +125,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1584592239236" />
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1586352493072">
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1586469063372">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1586352493072" />
-    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1586352493071">
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1586469063372" />
+    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1586469063371">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1586352493071" />
-    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1586352493065">
+    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1586469063371" />
+    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1586469063371">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1586352493065" />
-    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1586352493072">
+    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1586469063371" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1586469063372">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1586352493072" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1586469063372" />
     <state x="166" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1584298276337">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -153,10 +153,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="336" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1366.741@0.27.1366.741" timestamp="1584474692416" />
-    <state x="0" y="27" width="1356" height="741" key="new project wizard" timestamp="1585233118820">
+    <state x="0" y="27" width="1356" height="741" key="new project wizard" timestamp="1586458099847">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="0" y="27" width="1356" height="741" key="new project wizard/0.27.1366.741@0.27.1366.741" timestamp="1585233118820" />
+    <state x="0" y="27" width="1356" height="741" key="new project wizard/0.27.1366.741@0.27.1366.741" timestamp="1586458099847" />
     <state x="347" y="174" key="run.anything.popup" timestamp="1584280466807">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

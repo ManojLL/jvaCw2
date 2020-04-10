@@ -852,7 +852,6 @@ public class Train extends Application {
                         }
                         collection.insertOne(document);
                         System.out.println(document);
-                        System.out.println("added");
                         document.clear();
                     }
                 }

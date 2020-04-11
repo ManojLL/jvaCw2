@@ -842,16 +842,15 @@ public class Train extends Application {
                         document.append("date", bookDate);
 
                         //check data already in the collection, if true miss that
-                        FindIterable<Document> data = collection.find();
-                        for (Document record : data) {
-                            String seat = (String) record.get("seat");
-                            if(seat.equals(booking[i][x][y][0]) && LocalDate.parse((String) record.get("date")).equals(bDate)){
-                                document.clear();
-                                continue loop;
+                            FindIterable<Document> data = collection.find();
+                            for (Document record : data) {
+                                String seat = (String) record.get("seat");
+                                if(seat.equals(booking[i][x][y][0]) && LocalDate.parse((String) record.get("date")).equals(bDate)){
+                                    document.clear();
+                                    continue loop;
+                                }
                             }
-                        }
                         collection.insertOne(document);
-                        System.out.println(document);
                         document.clear();
                     }
                 }

@@ -598,8 +598,11 @@ public class Train extends Application {
     }
 
     private void guiPart(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking, LocalDate[] selectDate, int[] diff, int[] x, String[] y, boolean[] run) {
+        System.out.println("------------------------------------------------------");
+        System.out.println("                select date & destination             ");
+        System.out.println("------------------------------------------------------");
         System.out.println("to exit press q/Q otherwise press any key ");
-        System.out.print("enter your option =");
+        System.out.print("enter your option =  ");
         Scanner sc = new Scanner(System.in);
         String go = sc.next();
         if (go.equalsIgnoreCase("q")) {
@@ -611,31 +614,40 @@ public class Train extends Application {
             String[] min = minDate.toString().split("-");
             loop:
             while (true) {
-                System.out.print("\nenter year eg:- 2020 =");
+                System.out.print("enter year eg:- 2020 =  ");
                 String year = sc.next();
                 if (year.matches("[0-9]+")) {
                     if (year.equals(max[0]) || year.equals(min[0])) {
                         while (true) {
-                            System.out.print("\nenter month here **use two digit eg: 04 ** =");
+                            System.out.print("enter month here **use two digit eg: 04 ** =  ");
                             String month = sc.next();
                             if (max[1].equals(month) || min[1].equals(month)) {
                                 while (true) {
-                                    System.out.print("\nEnter date **use two digits** = ");
+                                    System.out.print("Enter date **use two digits** =  ");
                                     String day = sc.next();
                                     if (day.matches("[0-9]+")) {
                                         if (month.equals(min[1])) {
                                             if (day.compareTo(min[2]) >= 0) {
+                                                try{
                                                 selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
                                                 diff[0] = Period.between(now, selectDate[0]).getDays();
                                                 break loop;
+                                                }catch (Exception e){
+                                                    System.out.println("you have one or more than two digit please use two gitis");
+                                                }
                                             } else {
                                                 System.out.println("wrong input");
                                             }
                                         } else if (month.equals(max[1])) {
                                             if (day.compareTo(max[2]) <= 0) {
-                                                selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
-                                                diff[0] = Period.between(now, selectDate[0]).getDays();
-                                                break loop;
+                                                System.out.println(day.compareTo(max[2]));
+                                                try {
+                                                    selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
+                                                    diff[0] = Period.between(now, selectDate[0]).getDays();
+                                                    break loop;
+                                                }catch (Exception e){
+                                                    System.out.println("you have one or more than two digit please use two gitis");
+                                                }
                                             } else {
                                                 System.out.println("wrong input");
                                             }

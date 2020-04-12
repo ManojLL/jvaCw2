@@ -599,26 +599,28 @@ public class Train extends Application {
 
     private void guiPart(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking, LocalDate[] selectDate, int[] diff, int[] x, String[] y, boolean[] run) {
         System.out.println("to exit press q/Q otherwise press any key ");
+        System.out.print("enter your option =");
         Scanner sc = new Scanner(System.in);
         String go = sc.next();
         if (go.equalsIgnoreCase("q")) {
             run[0] = false;
         } else {
+            System.out.println("you can enter date between "+minDate+" - "+maxDate+"\n");
             run[0] = true;
             String[] max = maxDate.toString().split("-");
             String[] min = minDate.toString().split("-");
             loop:
             while (true) {
-                System.out.println("enter year eg : 2020");
+                System.out.print("\nenter year eg:- 2020 =");
                 String year = sc.next();
                 if (year.matches("[0-9]+")) {
                     if (year.equals(max[0]) || year.equals(min[0])) {
                         while (true) {
-                            System.out.println("enter month here **use two digit eg: 04 **");
+                            System.out.print("\nenter month here **use two digit eg: 04 ** =");
                             String month = sc.next();
                             if (max[1].equals(month) || min[1].equals(month)) {
                                 while (true) {
-                                    System.out.print("Enter date : ");
+                                    System.out.print("\nEnter date **use two digits** = ");
                                     String day = sc.next();
                                     if (day.matches("[0-9]+")) {
                                         if (month.equals(min[1])) {
@@ -655,9 +657,11 @@ public class Train extends Application {
             }
             loop2:
             while (true) {
+                System.out.println("-----------------------------------");
                 System.out.println("select destination :");
                 System.out.println("1 Colombo to Badull");
                 System.out.println("2 Badulla to Colombo");
+                System.out.println("-----------------------------------");
                 System.out.print("enter your option :");
                 String dest = sc.next();
                 switch (dest) {
@@ -880,7 +884,6 @@ public class Train extends Application {
         try {
             FindIterable<Document> data = collection.find();
             for (Document record : data) {
-                System.out.println(record);
                 String seat = (String) record.get("seat");
                 String name = (String) record.get("name");
                 String sname = (String) record.get("sname");

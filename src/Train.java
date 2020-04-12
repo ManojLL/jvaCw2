@@ -598,81 +598,82 @@ public class Train extends Application {
     }
 
     private void guiPart(LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking, LocalDate[] selectDate, int[] diff, int[] x, String[] y, boolean[] run) {
-        Stage stage = new Stage();
-        Pane pane = new Pane();
-        Label label2 = new Label("select date and destination");
-        label2.setStyle("-fx-font-size: 16px");
-        Label labelDate = new Label("Select Date : ");
-        Label labelDest = new Label("Select destination : ");
-        DatePicker datePicker = new DatePicker();
-        datePicker.setDayCellFactory(picker -> new DateCell() {
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                setDisable(date.isAfter(maxDate) || date.isBefore(minDate));
-            }
-        });
-        //final LocalDate[] selectDate = new LocalDate[1];
-        //final int[] diff = new int[1];
-        EventHandler<ActionEvent> eventDate = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                selectDate[0] = datePicker.getValue();
-                diff[0] = Period.between(now, selectDate[0]).getDays();
-            }
-        };
-        label2.setLayoutX(75);
-        label2.setLayoutY(150);
-        datePicker.setLayoutX(225);
-        datePicker.setLayoutY(250);
-        labelDate.setLayoutX(50);
-        labelDate.setLayoutY(250);
-
-        ComboBox<String> combo_box = new ComboBox<>(FXCollections.observableArrayList(destination));
-        //final int[] x = new int[1];
-        // final String[] y = new String[1];
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                y[0] = combo_box.getValue();
-                if (combo_box.getValue().equals("To Badulla")) {
-                    x[0] = 1;
+        System.out.println("to exit press q/Q otherwise press any key ");
+        Scanner sc = new Scanner(System.in);
+        String go = sc.next();
+        if (go.equalsIgnoreCase("q")) {
+            run[0] = false;
+        } else {
+            run[0] = true;
+            String[] max = maxDate.toString().split("-");
+            String[] min = minDate.toString().split("-");
+            loop:
+            while (true) {
+                System.out.println("enter year eg : 2020");
+                String year = sc.next();
+                if (year.matches("[0-9]+")) {
+                    if (year.equals(max[0]) || year.equals(min[0])) {
+                        while (true) {
+                            System.out.println("enter month here **use two digit eg: 04 **");
+                            String month = sc.next();
+                            if (max[1].equals(month) || min[1].equals(month)) {
+                                while (true) {
+                                    System.out.print("Enter date : ");
+                                    String day = sc.next();
+                                    if (day.matches("[0-9]+")) {
+                                        if (month.equals(min[1])) {
+                                            if (day.compareTo(min[2]) >= 0) {
+                                                selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
+                                                diff[0] = Period.between(now, selectDate[0]).getDays();
+                                                break loop;
+                                            } else {
+                                                System.out.println("wrong input");
+                                            }
+                                        } else if (month.equals(max[1])) {
+                                            if (day.compareTo(max[2]) <= 0) {
+                                                selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
+                                                diff[0] = Period.between(now, selectDate[0]).getDays();
+                                                break loop;
+                                            } else {
+                                                System.out.println("wrong input");
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("invalid input");
+                                    }
+                                }
+                            } else {
+                                System.out.println("wrong month input");
+                            }
+                        }
+                    } else {
+                        System.out.println("wrong year input !!");
+                    }
                 } else {
-                    x[0] = 2;
+                    System.out.println("integers only");
                 }
             }
-        };
-        combo_box.setLayoutX(225);
-        combo_box.setLayoutY(330);
-        labelDest.setLayoutX(50);
-        labelDest.setLayoutY(330);
-        Button bookButton = new Button("OK!!!");
-        Button closeButton = new Button("go to menu");
-        bookButton.setLayoutX(275);
-        bookButton.setLayoutY(550);
-        closeButton.setLayoutX(175);
-        closeButton.setLayoutY(550);
-
-        closeButton.setOnAction(e -> {
-            run[0] = false;
-            stage.close();
-        });
-        combo_box.setOnAction(event);
-        datePicker.setOnAction(eventDate);
-        pane.getChildren().addAll(combo_box, datePicker, labelDate, labelDest, bookButton, closeButton, label2);
-        Scene scene = new Scene(pane, 600, 600);
-
-        bookButton.setOnAction(e -> {
-            if (diff[0] == 0 || x[0] == 0) {
-                Alert a = new Alert(Alert.AlertType.ERROR);
-                a.setContentText("Please select destination and date ");
-                a.show();
-            } else {
-                run[0] = true;
-                stage.close();
+            loop2:
+            while (true) {
+                System.out.println("select destination :");
+                System.out.println("1 Colombo to Badull");
+                System.out.println("2 Badulla to Colombo");
+                System.out.print("enter your option :");
+                String dest = sc.next();
+                switch (dest) {
+                    case "1":
+                        x[0] = 1;
+                        y[0] = "Colombo to Badulla";
+                        break loop2;
+                    case "2":
+                        x[0] = 2;
+                        y[0] = "Badulla to Colombo";
+                        break loop2;
+                    default:
+                        System.out.println("wrong input !!!");
+                }
             }
-        });
-        stage.setScene(scene);
-        stage.showAndWait();
+        }
     }
 
     private void deleteCustomer(Scanner sc, LocalDate minDate, LocalDate maxDate, String[] destination, LocalDate now, String[][][][] booking) {
@@ -691,31 +692,35 @@ public class Train extends Application {
             while (true) {
                 System.out.print("enter seat number to remove customer : ");
                 String seatNumber = sc.next();
-                if (Integer.parseInt(seatNumber) <= 42 && Integer.parseInt(seatNumber) > 0) {
-                    try {
-                        if (booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][0] != null) {
-                            System.out.println("\n" + booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][1] + "'s seat " + seatNumber + " delete successfully" + "\n");
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][0] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][1] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][2] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][3] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][4] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][5] = null;
-                            booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][6] = null;
-                        } else {
-                            System.out.println(seatNumber + " seat hasn't booked!!!");
+                if (seatNumber.matches("[0-9]+")) {
+                    if (Integer.parseInt(seatNumber) <= 42 && Integer.parseInt(seatNumber) > 0) {
+                        try {
+                            if (booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][0] != null) {
+                                System.out.println("\n" + booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][1] + "'s seat " + seatNumber + " delete successfully" + "\n");
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][0] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][1] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][2] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][3] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][4] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][5] = null;
+                                booking[choseDeasta[0] - 1][difference[0] - 1][Integer.parseInt(seatNumber) - 1][6] = null;
+                            } else {
+                                System.out.println(seatNumber + " seat hasn't booked!!!");
+                            }
+                            System.out.println("Enter \"q\" to exit\nEnter any key to continue");
+                            System.out.print("Enter your option : ");
+                            String option = sc.next().toLowerCase();
+                            if ("q".equals(option)) {
+                                break delete;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Please input integer\ncheck and try again");
                         }
-                        System.out.println("Enter \"q\" to exit\nEnter any key to continue");
-                        System.out.print("Enter your option : ");
-                        String option = sc.next().toLowerCase();
-                        if ("q".equals(option)) {
-                            break delete;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Please input integer\ncheck and try again");
+                    } else {
+                        System.out.println("seat number not valid");
                     }
                 } else {
-                    System.out.println("seat number not valid");
+                    System.out.println("integers only");
                 }
             }
         }
@@ -743,7 +748,7 @@ public class Train extends Application {
                 for (int x = 0; x < SEAT_CAPACITI; x++) {
                     if (name.equalsIgnoreCase(booking[choseDeasta[0] - 1][difference[0] - 1][x][1] + " " + booking[choseDeasta[0] - 1][difference[0] - 1][x][2])) {
                         //print customer details
-                        System.out.println("name : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][1]+" "+booking[choseDeasta[0] - 1][difference[0] - 1][x][2] + " - seat number : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][0] + " - NIC : " +
+                        System.out.println("name : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][1] + " " + booking[choseDeasta[0] - 1][difference[0] - 1][x][2] + " - seat number : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][0] + " - NIC : " +
                                 booking[choseDeasta[0] - 1][difference[0] - 1][x][3] + " - Address : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][4] + " - Contact : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][5] +
                                 " - Email : " + booking[choseDeasta[0] - 1][difference[0] - 1][x][6]);
                         find = true;
@@ -779,7 +784,7 @@ public class Train extends Application {
 
             for (int i = 0; i < SEAT_CAPACITI; i++) {
                 if (booking[choseDeasta[0] - 1][difference[0] - 1][i][1] != null) {
-                    names.add(booking[choseDeasta[0] - 1][difference[0] - 1][i][1]+" "+booking[choseDeasta[0] - 1][difference[0] - 1][i][2]);
+                    names.add(booking[choseDeasta[0] - 1][difference[0] - 1][i][1] + " " + booking[choseDeasta[0] - 1][difference[0] - 1][i][2]);
                     seats.add(booking[choseDeasta[0] - 1][difference[0] - 1][i][0]);
                 }
             }
@@ -842,14 +847,14 @@ public class Train extends Application {
                         document.append("date", bookDate);
 
                         //check data already in the collection, if true miss that
-                            FindIterable<Document> data = collection.find();
-                            for (Document record : data) {
-                                String seat = (String) record.get("seat");
-                                if(seat.equals(booking[i][x][y][0]) && LocalDate.parse((String) record.get("date")).equals(bDate)){
-                                    document.clear();
-                                    continue loop;
-                                }
+                        FindIterable<Document> data = collection.find();
+                        for (Document record : data) {
+                            String seat = (String) record.get("seat");
+                            if (seat.equals(booking[i][x][y][0]) && LocalDate.parse((String) record.get("date")).equals(bDate)) {
+                                document.clear();
+                                continue loop;
                             }
+                        }
                         collection.insertOne(document);
                         document.clear();
                     }

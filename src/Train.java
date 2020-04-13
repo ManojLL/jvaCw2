@@ -1,3 +1,10 @@
+/*
+ * date : 2020-04-13
+ * name : Manoj Lakshan Rathnapriya
+ * IIT id = 2019274
+ * uoW iD : w1761261
+ */
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -608,7 +615,7 @@ public class Train extends Application {
         if (go.equalsIgnoreCase("q")) {
             run[0] = false;
         } else {
-            System.out.println("you can enter date between "+minDate+" - "+maxDate+"\n");
+            System.out.println("you can enter date between " + minDate + " - " + maxDate + "\n");
             run[0] = true;
             String[] max = maxDate.toString().split("-");
             String[] min = minDate.toString().split("-");
@@ -628,11 +635,11 @@ public class Train extends Application {
                                     if (day.matches("[0-9]+")) {
                                         if (month.equals(min[1])) {
                                             if (day.compareTo(min[2]) >= 0) {
-                                                try{
-                                                selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
-                                                diff[0] = Period.between(now, selectDate[0]).getDays();
-                                                break loop;
-                                                }catch (Exception e){
+                                                try {
+                                                    selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
+                                                    diff[0] = Period.between(now, selectDate[0]).getDays();
+                                                    break loop;
+                                                } catch (Exception e) {
                                                     System.out.println("you have one or more than two digit please use two gitis");
                                                 }
                                             } else {
@@ -645,7 +652,7 @@ public class Train extends Application {
                                                     selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
                                                     diff[0] = Period.between(now, selectDate[0]).getDays();
                                                     break loop;
-                                                }catch (Exception e){
+                                                } catch (Exception e) {
                                                     System.out.println("you have one or more than two digit please use two gitis");
                                                 }
                                             } else {

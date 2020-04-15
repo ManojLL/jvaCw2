@@ -44,7 +44,7 @@ public class Train extends Application {
         //[30] means customer can book seat for 30 days
         //[42] rows number of seats
         //[6] user details 6(name,surnamee,seat number,NIC,contact number,address,email)
-        String[][][][] booking = new String[2][30][SEAT_CAPACITI][7];
+        String[][][][] booking = new String[2][29][SEAT_CAPACITI][7];
 
         //destinations
         String[] destination = {"To Badulla", "To Colombo"};
@@ -60,7 +60,7 @@ public class Train extends Application {
 
         //get dates
         LocalDate minDate = LocalDate.now().plusDays(1);    //book start date
-        LocalDate maxDate = LocalDate.now().plusDays(30);   //book end date
+        LocalDate maxDate = LocalDate.now().plusDays(29);   //book end date
         LocalDate nowDate = LocalDate.now();
         System.out.println("Today date : " + nowDate);
         Scanner sc = new Scanner(System.in);
@@ -647,7 +647,7 @@ public class Train extends Application {
                                             }
                                         } else if (month.equals(max[1])) {
                                             if (day.compareTo(max[2]) <= 0) {
-                                                System.out.println(day.compareTo(max[2]));
+//                                                System.out.println(day.compareTo(max[2]));
                                                 try {
                                                     selectDate[0] = LocalDate.parse(year + "-" + month + "-" + day);
                                                     diff[0] = Period.between(now, selectDate[0]).getDays();
@@ -854,7 +854,7 @@ public class Train extends Application {
 
     private void sendData(Document document, MongoCollection<Document> collection, String[][][][] booking, int i, LocalDate now) {
         try {
-            for (int x = 0; x < 30; x++) {
+            for (int x = 0; x < 29; x++) {
                 loop:
                 for (int y = 0; y < SEAT_CAPACITI; y++) {
                     if (booking[i][x][y][0] != null) {

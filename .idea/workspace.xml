@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="" />
+    <list default="true" id="f261c7ee-4ed7-4a55-8445-865be1fb345d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/w1761261/Train.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/w1761261/Train.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Train.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +114,10 @@
       <workItem from="1586466073257" duration="723000" />
       <workItem from="1586497988846" duration="1457000" />
       <workItem from="1586572981799" duration="4327000" />
+      <workItem from="1586772998796" duration="6340000" />
+      <workItem from="1586836685264" duration="2014000" />
+      <workItem from="1586887961566" duration="1365000" />
+      <workItem from="1586929587601" duration="2698000" />
     </task>
     <servers />
   </component>
@@ -121,26 +137,26 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.741@0.27.1366.741" timestamp="1584344546183" />
-    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl" timestamp="1584592239236">
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl" timestamp="1586932828465">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1584592239236" />
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1586720230550">
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1586932828465" />
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom" timestamp="1586933113698">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1586720230550" />
-    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1586720230546">
+    <state width="1320" height="409" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1586933113698" />
+    <state width="1320" height="409" key="GridCell.Tab.0.center" timestamp="1586933113698">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1586720230546" />
-    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1586720230546">
+    <state width="1320" height="409" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1586933113698" />
+    <state width="1320" height="409" key="GridCell.Tab.0.left" timestamp="1586933113698">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1586720230546" />
-    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1586720230548">
+    <state width="1320" height="409" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1586933113698" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right" timestamp="1586933113698">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1586720230548" />
+    <state width="1320" height="409" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1586933113698" />
     <state x="166" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1584298276337">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -161,10 +177,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1584280466807" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1584266845066">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1586779127457">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1584266845066" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1586779127457" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test10$Train.ic" NAME="Train Coverage Results" MODIFIED="1584512820101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
